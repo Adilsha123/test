@@ -3,7 +3,7 @@
 const barChartOptions = {
     series: [
         {
-            data: [20, 25, 15, 10, 6],
+            data: [20, 25, 15, ],
         },
     ],
     chart: {
@@ -13,7 +13,7 @@ const barChartOptions = {
             show: false,
         },
     },
-    colors: ['#246dec', '#cc3c43', '#367952', '#f5b74f', '#4f35a1'],
+    colors: ['#246dec', '#cc3c43', '#367952', ],
     plotOptions: {
         bar: {
             distributed: true,
@@ -29,7 +29,7 @@ const barChartOptions = {
         // show: false,
     },
     xaxis: {
-        categories: ['Room 1', 'Room 2', 'Room 3', 'Room 4', 'Room 5'],
+        categories: ['Occupancy', 'Air Quality', 'Noise Level', ],
     },
     yaxis: {
         title: {
@@ -49,11 +49,11 @@ const areaChartOptions = {
     series: [
         {
             name: 'Noise Level',
-            data: [31, 40, 28, 51, 42, 109, 100],
+            data: [31, 40, 28, 51, 42, 109,],
         },
         {
             name: 'Air Quality',
-            data: [11, 32, 45, 32, 34, 52, 41],
+            data: [11, 32, 45, 32, 34, 52,],
         },
     ],
     chart: {
@@ -70,7 +70,7 @@ const areaChartOptions = {
     stroke: {
         curve: 'smooth',
     },
-    labels: ['Area 1', 'Area 2', 'Area 3', 'Area 4', 'Area 5', ' Area 6', 'Area 7'],
+    labels: ['01:00', '05:00', '09:00', '13:00', '18:00', ' 24:00', ],
     markers: {
         size: 0,
     },
@@ -298,3 +298,22 @@ areaChart.render();
     }
   }
   
+        // Attach event listener to the room count card
+        document.getElementById('roomCountCard').addEventListener('click', function() {
+            // Show the modal overlay
+            document.querySelector('.modal-overlay').style.display = 'flex';
+            
+            // Populate room names in the dropdown
+            populateRoomNames();
+          });
+          document.getElementById('roomNamesDropdown').addEventListener('change', function() {
+            // Get the selected room ID
+            const selectedRoomId = this.value;
+            
+            // Update the room count for the selected room
+            updateRoomCapacity(selectedRoomId);
+            updateoccupancy(selectedRoomId)
+            updateRoomAirQuality(selectedRoomId)
+            updateRoomNoiseLevel(selectedRoomId);
+            document.querySelector('.modal-overlay').style.display = 'none';
+          });
